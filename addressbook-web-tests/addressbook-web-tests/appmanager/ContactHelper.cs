@@ -15,9 +15,57 @@ namespace WebAddressbookTests
         {
         }
 
+        public ContactHelper Create(ContactData contact)
+        {
+            manager.Navigator.GoToContactsPage();
+            InitContactCreation();
+            EnterNameData(contact);
+            EnterNickname();
+            EnterTitle();
+            EnterCompany();
+            EnterAddress();
+            EnterHomeNumber();
+            EnterMobileNumber();
+            EnterWorkNumber();
+            EnterFax();
+            EnterEmail();
+            EnterEmail2();
+            EnterEmail3();
+            EnterHomepage();
+            SelectBirthday();
+            SelectAnniversary();
+            EnterSecondaryAddress();
+            EnterSecondaryPhoneNumber();
+            EnterNotes();
+            SubmitContactCreation();
+            return this;
+        }
+
+        public ContactHelper Remove(int item)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(item);
+            DeleteContact();
+            return this;
+        }
+
+        public ContactHelper Modify(int item, ContactData newData)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(item);
+            EnterNameData(newData);
+            SubmitContactModification();
+            return this;
+        }
+
         public void SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//input[@value='Enter']")).Click();
+        }
+
+        public void SubmitContactModification()
+        {
+            driver.FindElement(By.XPath("//input[@value='Update']")).Click();
         }
 
         public void EnterNotes()
@@ -164,6 +212,19 @@ namespace WebAddressbookTests
         public void InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+        }
+
+        public ContactHelper SelectContact(int item)
+        {
+            item = item + 1;
+            driver.FindElement(By.XPath("//*[@id='maintable']/tbody/tr[" + item + "]/td[8]/a")).Click();
+            return this;
+        }
+
+        public ContactHelper DeleteContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
         }
 
     }
