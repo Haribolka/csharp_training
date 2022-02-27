@@ -41,14 +41,30 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(int item)
+        private GroupHelper Remove(int item)
+        {
+            SelectGroup(item);
+            DeleteGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        private GroupHelper Modify(int item, GroupData newData)
+        {
+            SelectGroup(item);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        public GroupHelper RemoveIfAccessible(int item)
         {
             manager.Navigator.GoToGroupsPage();
             if (IsElementPresent(By.Name("selected[]")))
             {
-                SelectGroup(item);
-                DeleteGroup();
-                ReturnToGroupsPage();
+                Remove(item);
             }
             else
             {
@@ -58,16 +74,12 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Modify(int item, GroupData newData)
+        public GroupHelper ModifyIfAccessible(int item, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
             if (IsElementPresent(By.Name("selected[]")))
             {
-                SelectGroup(item);
-                InitGroupModification();
-                FillGroupForm(newData);
-                SubmitGroupModification();
-                ReturnToGroupsPage();
+                Modify(item, newData);
             }
             else
             {

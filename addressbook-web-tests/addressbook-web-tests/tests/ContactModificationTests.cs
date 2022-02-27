@@ -17,7 +17,7 @@ namespace WebAddressbookTests
             newData.MiddleName = "W";
             newData.LastName = "Bush";
 
-            app.Contacts.Modify(1, newData);
+            app.Contacts.ModifyIfAccessible(1, newData);
         }
     }
 }
