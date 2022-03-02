@@ -43,6 +43,7 @@ namespace WebAddressbookTests
 
         private GroupHelper Remove(int item)
         {
+            manager.Navigator.GoToGroupsPage();
             SelectGroup(item);
             DeleteGroup();
             ReturnToGroupsPage();
@@ -51,6 +52,7 @@ namespace WebAddressbookTests
 
         private GroupHelper Modify(int item, GroupData newData)
         {
+            manager.Navigator.GoToGroupsPage();
             SelectGroup(item);
             InitGroupModification();
             FillGroupForm(newData);
@@ -59,32 +61,29 @@ namespace WebAddressbookTests
             return this;
         }
 
+        
+
         public GroupHelper RemoveIfAccessible(int item)
         {
             manager.Navigator.GoToGroupsPage();
-            if (IsElementPresent(By.Name("selected[]")))
-            {
-                Remove(item);
-            }
-            else
+            if (!IsElementPresent(By.Name("selected[]")))
             {
                 GroupData defaultGroup = new GroupData("default");
                 Create(defaultGroup);
             }
+            Remove(item);
             return this;
         }
 
         public GroupHelper ModifyIfAccessible(int item, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            if (IsElementPresent(By.Name("selected[]")))
+            if (!IsElementPresent(By.Name("selected[]")))
             {
-                Modify(item, newData);
+                GroupData defaultGroup = new GroupData("default");
+                Create(defaultGroup);
             }
-            else
-            {
-                Create(newData);
-            }
+            Modify(item, newData);
             return this;
         }
 
