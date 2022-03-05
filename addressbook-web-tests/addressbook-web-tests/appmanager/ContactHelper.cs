@@ -41,7 +41,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private ContactHelper Remove(int item)
+        public ContactHelper Remove(int item)
         {
             manager.Navigator.GoToContactsPage();
             SelectContact(item);
@@ -49,7 +49,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private ContactHelper Modify(int item, ContactData newData)
+        public ContactHelper Modify(int item, ContactData newData)
         {
             manager.Navigator.GoToContactsPage();
             SelectContact(item);
@@ -58,19 +58,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper RemoveIfAccesible(int item)
-        {
-            manager.Navigator.GoToContactsPage();
-            if (!IsElementPresent(By.Name("selected[]")))
-            { 
-                ContactData defaultContact = new ContactData("default");
-                Create(defaultContact);
-            }
-            Remove(item);
-            return this;
-        }
-
-        public ContactHelper ModifyIfAccessible(int item, ContactData newData)
+        public ContactHelper CreateDefaultContact()
         {
             manager.Navigator.GoToContactsPage();
             if (!IsElementPresent(By.Name("selected[]")))
@@ -78,11 +66,8 @@ namespace WebAddressbookTests
                 ContactData defaultContact = new ContactData("default");
                 Create(defaultContact);
             }
-            Modify(item, newData);
             return this;
         }
-
-
 
         public void SubmitContactCreation()
         {

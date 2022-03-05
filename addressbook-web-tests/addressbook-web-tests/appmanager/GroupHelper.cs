@@ -41,7 +41,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private GroupHelper Remove(int item)
+        public GroupHelper Remove(int item)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(item);
@@ -50,7 +50,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private GroupHelper Modify(int item, GroupData newData)
+        public GroupHelper Modify(int item, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(item);
@@ -61,9 +61,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        
-
-        public GroupHelper RemoveIfAccessible(int item)
+        public GroupHelper CreateDefaultGroup()
         {
             manager.Navigator.GoToGroupsPage();
             if (!IsElementPresent(By.Name("selected[]")))
@@ -71,19 +69,6 @@ namespace WebAddressbookTests
                 GroupData defaultGroup = new GroupData("default");
                 Create(defaultGroup);
             }
-            Remove(item);
-            return this;
-        }
-
-        public GroupHelper ModifyIfAccessible(int item, GroupData newData)
-        {
-            manager.Navigator.GoToGroupsPage();
-            if (!IsElementPresent(By.Name("selected[]")))
-            {
-                GroupData defaultGroup = new GroupData("default");
-                Create(defaultGroup);
-            }
-            Modify(item, newData);
             return this;
         }
 

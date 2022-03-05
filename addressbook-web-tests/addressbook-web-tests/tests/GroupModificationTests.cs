@@ -17,7 +17,8 @@ namespace WebAddressbookTests
             newData.Header = "yyy";
             newData.Footer = "xxx";
 
-            app.Groups.ModifyIfAccessible(1,newData);
+            app.Groups.CreateDefaultGroup();
+            app.Groups.Modify(1,newData);
         }
     }
 }
