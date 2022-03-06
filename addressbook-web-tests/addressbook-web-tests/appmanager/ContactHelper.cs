@@ -41,6 +41,18 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToContactsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.FindElement(By.XPath("td[3]")).Text, element.FindElement(By.XPath("td[2]")).Text));
+            }
+            return contacts;
+        }
+
         public ContactHelper Remove(int item)
         {
             manager.Navigator.GoToContactsPage();
@@ -174,9 +186,14 @@ namespace WebAddressbookTests
         public void EnterNameData(ContactData contact)
         {
             Type(By.Name("firstname"), contact.Name);
-            Type(By.Name("middlename"), contact.MiddleName);
             Type(By.Name("lastname"), contact.LastName);
         }
+
+        public void EnterMiddleName()
+        {
+            Type(By.Name("middlename"), "W");
+        }
+
 
         public void InitContactCreation()
         {
