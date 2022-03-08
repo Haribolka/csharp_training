@@ -8,45 +8,24 @@ namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string name;
-        private string lastName = "";
+        //private string name;
+        //private string lastName;
 
 
         public ContactData(string name)
         {
-            this.name = name;
+            Name = name;
         }
 
         public ContactData(string name, string lastName)
         {
-            this.name = name;
-            this.lastName = lastName;
+            Name = name;
+            LastName = lastName;
         }
 
-        public string Name 
-        { 
-            get 
-            { 
-                return name; 
-            }
-            set
-            {
-                name = value;
-            }
-        }
-
-
-        public string LastName
-        {
-            get 
-            { 
-                return lastName; 
-            }
-            set 
-            { 
-                lastName = value;  
-            }
-        }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string Id { get; set; }
 
         public int CompareTo(ContactData other)
         {
@@ -54,7 +33,7 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            return name.CompareTo(other.name);
+            return Name.CompareTo(other.Name);
         }
 
         public bool Equals(ContactData other)
