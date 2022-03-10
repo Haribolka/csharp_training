@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 
-
 namespace WebAddressbookTests
 {
     [TestFixture]
@@ -16,24 +15,16 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("Jerry0");
-            contact.LastName = "Lewis0";
+            ContactData contact = new ContactData("Jerry");
+            contact.LastName = "Lewis";
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
-
             app.Contacts.Create(contact);
-
             List<ContactData> newContacts = app.Contacts.GetContactList();
-
             oldContacts.Add(contact);
             oldContacts.Sort();
             newContacts.Sort();
-
             Assert.AreEqual(oldContacts, newContacts);
-
-
         }
-     
     }
 }
-

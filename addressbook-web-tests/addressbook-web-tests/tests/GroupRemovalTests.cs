@@ -5,7 +5,6 @@ using System.Threading;
 using System.Collections.Generic;
 using NUnit.Framework;
 
-
 namespace WebAddressbookTests
 {
     [TestFixture]
@@ -14,12 +13,10 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-
             //app.Groups.CreateDefaultGroup();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Remove(1);
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount());
-
             List<GroupData> newGroups = app.Groups.GetGroupList();
             GroupData toBeRemoved = oldGroups[0];
             oldGroups.RemoveAt(0);
@@ -30,6 +27,5 @@ namespace WebAddressbookTests
                 Assert.AreNotEqual(group.Id, toBeRemoved.Id);
             }
         }
-
     }
 }
