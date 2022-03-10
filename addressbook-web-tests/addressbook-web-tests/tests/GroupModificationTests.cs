@@ -17,7 +17,7 @@ namespace WebAddressbookTests
             newData.Header = "yyy";
             newData.Footer = "xxx";
 
-            //app.Groups.CreateDefaultGroup();
+            app.Groups.CreateDefaultGroup();
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             GroupData oldData = oldGroups[0];
             app.Groups.Modify(1, newData);
