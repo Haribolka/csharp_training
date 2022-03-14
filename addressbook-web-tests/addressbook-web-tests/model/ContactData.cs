@@ -10,6 +10,7 @@ namespace WebAddressbookTests
     {
         private string allPhones;
         private string allEmails;
+        private string fullContactDetails;
 
         public ContactData(string name)
         {
@@ -24,14 +25,24 @@ namespace WebAddressbookTests
 
         public string Name { get; set; }
         public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string Nickname { get; set; }
+        public string Company { get; set; }
+        public string Title { get; set; }
         public string Address { get; set; }
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
         public string SecondaryPhone { get; set; }
+        public string FaxPhone { get; set; }
+        public string Homepage { get; set; }
         public string Email { get; set; }
         public string Email2 { get; set; }
         public string Email3 { get; set; }
+        public string Birthday { get; set; }
+        public string Anniversary { get; set; }
+        public string SecondaryAddress { get; set; }
+        public string Notes { get; set; }
 
         public string AllEmails
         {
@@ -70,6 +81,32 @@ namespace WebAddressbookTests
             set
             {
                 allPhones = value;
+            }
+        }
+
+        public string FullContactDetails
+        {
+            get
+            {
+                if (fullContactDetails != null)
+                {
+                    return fullContactDetails;
+                }
+                else
+                {
+                    return (Name + " " + MiddleName + " " + LastName + "\r\n" +
+                        Nickname + "\r\n" + Title + "\r\n" + Company + "\r\n" +
+                        Address + "\r\n\r\nH: " + HomePhone + "\r\nM: " + MobilePhone + "\r\nW: " +
+                        WorkPhone + "\r\nF: " + FaxPhone + "\r\n\r\n" + Email + "\r\n" +
+                        Email2 + "\r\n" + Email3 + "\r\nHomepage:\r\n" + Homepage + "\r\n\r\nBirthday " +
+                        Birthday + "\r\nAnniversary " + Anniversary + "\r\n\r\n" + SecondaryAddress + "\r\n\r\nP: " +
+                        SecondaryPhone + "\r\n\r\n" + Notes);
+                }
+            }
+
+            set
+            {
+                fullContactDetails = value;
             }
         }
 
