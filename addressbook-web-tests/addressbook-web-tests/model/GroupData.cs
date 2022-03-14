@@ -8,10 +8,9 @@ namespace WebAddressbookTests
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-
         public GroupData(string name)
-        { 
-           Name = name;
+        {
+            Name = name;
         }
 
         public GroupData(string name, string header, string footer)
@@ -21,13 +20,12 @@ namespace WebAddressbookTests
             Footer = footer;
         }
 
-        public string Name { get; set; }      
+        public string Name { get; set; }
 
         public string Header { get; set; }
 
         public string Footer { get; set; }
         public string Id { get; set; }
-
 
         public int CompareTo(GroupData other)
         {
@@ -45,16 +43,20 @@ namespace WebAddressbookTests
                 return false;
             }
             if (Object.ReferenceEquals(this, other))
-            { 
+            {
                 return true;
             }
             return Name == other.Name;
         }
 
         public override int GetHashCode()
-        { 
-           return Name.GetHashCode();
+        {
+            return Name.GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return "name=" + Name + "\nheader= " + Header + "\nfooter=" + Footer;
+        }
     }
 }
