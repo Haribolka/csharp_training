@@ -101,12 +101,27 @@ namespace WebAddressbookTests
                         Email2 + "\r\n" + Email3 + "\r\nHomepage:\r\n" + Homepage + "\r\n\r\nBirthday " +
                         Birthday + "\r\nAnniversary " + Anniversary + "\r\n\r\n" + SecondaryAddress + "\r\n\r\nP: " +
                         SecondaryPhone + "\r\n\r\n" + Notes);*/
-                    string details = Name + " " + LastName;
+                    string details = "";
+                    if (Name != "")
+                    {
+                        details = details + Name;
+                    }
+                    if ((LastName != "") && (LastName != ""))
+                    {
+                        details = details + " " + LastName;
+                    }
+                    if ((LastName != "") && (LastName == ""))
+                    {
+                        details = details + LastName;
+                    }
+                    if ((Name != "") || (LastName != ""))
+                    {
+                        details = details + "\r\n";
+                    }
                     if (Address != "")
                     {
-                        details = details + "\r\n" + Address;
+                        details = details + Address + "\r\n";
                     }
-                    details = details + "\r\n";
                     if (HomePhone != "")
                     {
                         details = details + "\r\nH: " + HomePhone;
@@ -119,7 +134,7 @@ namespace WebAddressbookTests
                     {
                         details = details + "\r\nW: " + WorkPhone;
                     }
-                    if ((HomePhone != "") && (MobilePhone != "") && (WorkPhone != ""))
+                    if ((HomePhone != "") || (MobilePhone != "") || (WorkPhone != ""))
                     {
                         details = details + "\r\n";
                     }
