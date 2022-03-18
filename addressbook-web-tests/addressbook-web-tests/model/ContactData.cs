@@ -94,13 +94,48 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (Name + " " + MiddleName + " " + LastName + "\r\n" +
+                    /*return (Name + " " + MiddleName + " " + LastName + "\r\n" +
                         Nickname + "\r\n" + Title + "\r\n" + Company + "\r\n" +
                         Address + "\r\n\r\nH: " + HomePhone + "\r\nM: " + MobilePhone + "\r\nW: " +
                         WorkPhone + "\r\nF: " + FaxPhone + "\r\n\r\n" + Email + "\r\n" +
                         Email2 + "\r\n" + Email3 + "\r\nHomepage:\r\n" + Homepage + "\r\n\r\nBirthday " +
                         Birthday + "\r\nAnniversary " + Anniversary + "\r\n\r\n" + SecondaryAddress + "\r\n\r\nP: " +
-                        SecondaryPhone + "\r\n\r\n" + Notes);
+                        SecondaryPhone + "\r\n\r\n" + Notes);*/
+                    string details = Name + " " + LastName;
+                    if (Address != "")
+                    {
+                        details = details + "\r\n" + Address;
+                    }
+                    details = details + "\r\n";
+                    if (HomePhone != "")
+                    {
+                        details = details + "\r\nH: " + HomePhone;
+                    }
+                    if (MobilePhone != "")
+                    {
+                        details = details + "\r\nM: " + MobilePhone;
+                    }
+                    if (WorkPhone != "")
+                    {
+                        details = details + "\r\nW: " + WorkPhone;
+                    }
+                    if ((HomePhone != "") && (MobilePhone != "") && (WorkPhone != ""))
+                    {
+                        details = details + "\r\n";
+                    }
+                    if (Email != "")
+                    {
+                        details = details + "\r\n" + Email;
+                    }
+                    if (Email2 != "")
+                    {
+                        details = details + "\r\n" + Email2;
+                    }
+                    if (Email3 != "")
+                    {
+                        details = details + "\r\n" + Email3;
+                    }
+                    return details;
                 }
             }
 

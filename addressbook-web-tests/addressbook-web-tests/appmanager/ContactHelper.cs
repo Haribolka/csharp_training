@@ -50,53 +50,53 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToContactsPage();
             InitContactModification(0);
-            int ageBirthday = DateTime.Now.Year - Convert.ToInt32(driver.FindElement(By.Name("byear")).GetAttribute("value"));
-            int ageAnniversary = DateTime.Now.Year - Convert.ToInt32(driver.FindElement(By.Name("ayear")).GetAttribute("value"));
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
-            string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
-            string nickname = driver.FindElement(By.Name("nickname")).GetAttribute("value");
-            string company = driver.FindElement(By.Name("company")).GetAttribute("value");
-            string title = driver.FindElement(By.Name("title")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-            string faxPhone = driver.FindElement(By.Name("fax")).GetAttribute("value");
             string email = driver.FindElement(By.Name("email")).GetAttribute("value");
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
             string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+            /*int ageBirthday = DateTime.Now.Year - Convert.ToInt32(driver.FindElement(By.Name("byear")).GetAttribute("value"));
+            int ageAnniversary = DateTime.Now.Year - Convert.ToInt32(driver.FindElement(By.Name("ayear")).GetAttribute("value"));
+            string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
+            string nickname = driver.FindElement(By.Name("nickname")).GetAttribute("value");
+            string company = driver.FindElement(By.Name("company")).GetAttribute("value");
+            string title = driver.FindElement(By.Name("title")).GetAttribute("value");
+            string faxPhone = driver.FindElement(By.Name("fax")).GetAttribute("value");
             string homepage = driver.FindElement(By.Name("homepage")).GetAttribute("value");
             string birthday = driver.FindElement(By.Name("bday")).GetAttribute("value") + ". "
-                + driver.FindElement(By.Name("bmonth")).GetAttribute("value") + " "
-                + driver.FindElement(By.Name("byear")).GetAttribute("value") + " (" + ageBirthday + ")";
+                  + driver.FindElement(By.Name("bmonth")).GetAttribute("value") + " "
+                  + driver.FindElement(By.Name("byear")).GetAttribute("value") + " (" + ageBirthday + ")";
             string anniversary = driver.FindElement(By.Name("aday")).GetAttribute("value") + ". "
-                + driver.FindElement(By.XPath("//select[@name='amonth']/option[1]")).Text + " "
-                + driver.FindElement(By.Name("ayear")).GetAttribute("value") + " (" + ageAnniversary + ")";
+                  + driver.FindElement(By.XPath("//select[@name='amonth']/option[1]")).Text + " "
+                  + driver.FindElement(By.Name("ayear")).GetAttribute("value") + " (" + ageAnniversary + ")";
             string secondaryAddress = driver.FindElement(By.Name("address2")).GetAttribute("value");
             string secondaryPhone = driver.FindElement(By.Name("phone2")).GetAttribute("value");
-            string notes = driver.FindElement(By.Name("notes")).GetAttribute("value");
+            string notes = driver.FindElement(By.Name("notes")).GetAttribute("value");  */
 
             return new ContactData(firstName, lastName)
             {
-                MiddleName = middleName,
-                Nickname = nickname,
-                Company = company,
-                Title = title,
                 Address = address,
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
                 WorkPhone = workPhone,
-                FaxPhone = faxPhone,
                 Email = email,
                 Email2 = email2,
                 Email3 = email3,
+                /* MiddleName = middleName,
+                Nickname = nickname,
+                Company = company,
+                Title = title,
+                FaxPhone = faxPhone,
                 Homepage = homepage,
                 Birthday = birthday,
                 Anniversary = anniversary,
                 SecondaryAddress = secondaryAddress,
                 SecondaryPhone = secondaryPhone,
-                Notes = notes
+                Notes = notes */
             };
         }
 
