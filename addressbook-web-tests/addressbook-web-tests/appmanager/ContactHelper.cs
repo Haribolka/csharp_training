@@ -167,10 +167,27 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper Remove(ContactData contact)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(contact.ContactId);
+            DeleteContact();
+            return this;
+        }
+
         public ContactHelper Modify(int item, ContactData newData)
         {
             manager.Navigator.GoToContactsPage();
             SelectContact(item);
+            EnterNameData(newData);
+            SubmitContactModification();
+            return this;
+        }
+
+        public ContactHelper Modify(ContactData initialData, ContactData newData)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(initialData.ContactId);
             EnterNameData(newData);
             SubmitContactModification();
             return this;
@@ -312,6 +329,12 @@ namespace WebAddressbookTests
         {
             item = item + 1;
             driver.FindElement(By.XPath("//*[@id='maintable']/tbody/tr[" + item + "]/td[8]/a")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(String id)
+        {
+            driver.FindElement(By.XPath("//a[@href='edit.php?id=" + id + "']")).Click();
             return this;
         }
 

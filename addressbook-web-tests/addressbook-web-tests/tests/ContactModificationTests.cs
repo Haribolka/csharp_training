@@ -8,18 +8,19 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests : AuthTestBase
+    public class ContactModificationTests : ContactTestBase
     {
         [Test]
         public void ContactModificationTest()
         {
-            ContactData newData = new ContactData("George");
-            newData.LastName = "Bush";
+            ContactData newData = new ContactData("Forrest");
+            newData.LastName = "Gump";
 
             app.Contacts.CreateDefaultContact();
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
-            app.Contacts.Modify(1, newData);
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData oldData = oldContacts[0];
+            app.Contacts.Modify(oldData, newData);
+            List<ContactData> newContacts = ContactData.GetAll();
             oldContacts[0].Name = newData.Name;
             oldContacts[0].LastName = newData.LastName;
             oldContacts.Sort();

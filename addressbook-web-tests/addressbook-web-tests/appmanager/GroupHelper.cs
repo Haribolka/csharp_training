@@ -32,7 +32,7 @@ namespace WebAddressbookTests
         public List<GroupData> GetGroupList()
         {
             if (groupCache == null)
-            { 
+            {
                 groupCache = new List<GroupData>();
                 manager.Navigator.GoToGroupsPage();
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
@@ -54,11 +54,8 @@ namespace WebAddressbookTests
             return this;
         }
 
-
-
         public GroupHelper Create(GroupData group)
         {
-          
             manager.Navigator.GoToGroupsPage();
             InitGroupCreation();
             FillGroupForm(group);
@@ -76,10 +73,30 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public GroupHelper Remove(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(group.Id);
+            DeleteGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
+
         public GroupHelper Modify(int item, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(item);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        public GroupHelper Modify(GroupData initialData, GroupData newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(initialData.Id);
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
@@ -127,7 +144,13 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int item)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + item + "]/input")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (item + 1) + "]/input")).Click();
+            return this;
+        }
+
+        public GroupHelper SelectGroup(String id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
             return this;
         }
 
@@ -138,5 +161,4 @@ namespace WebAddressbookTests
             return this;
         }
     }
-
 }
