@@ -89,6 +89,9 @@ namespace WebAddressbookTests
         [Column(Name = "id"), PrimaryKey, Identity]
         public string ContactId { get; set; }
 
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
+
         public string AllEmails
         {
             get
@@ -220,7 +223,7 @@ namespace WebAddressbookTests
         {
             using (AddressBookDB db = new AddressBookDB())
             {
-                return (from g in db.Contacts select g).ToList();
+                return (from с in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select с).ToList();
             }
         }
 
