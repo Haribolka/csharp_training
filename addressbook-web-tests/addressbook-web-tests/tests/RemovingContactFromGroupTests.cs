@@ -12,7 +12,7 @@ namespace WebAddressbookTests
         [Test]
         public void TestRemovingContactFromGroup()
         {
-            GroupData group = GroupData.GetAll()[0];
+            /*GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = ContactData.GetAll().First();
 
@@ -22,7 +22,24 @@ namespace WebAddressbookTests
             oldList.RemoveAt(0);
             newList.Sort();
             oldList.Sort();
-            Assert.AreEqual(oldList, newList);
+            Assert.AreEqual(oldList, newList);*/
+
+            List<GroupData> groups = GroupData.GetAll();
+
+            foreach (GroupData g in groups)
+            {
+                List<ContactData> groupContacts = g.GetContacts();
+                if (groupContacts.Count > 0)
+                {
+                    app.Contacts.RemoveContactFromGroup(groupContacts[0], g);
+                    List<ContactData> newList = g.GetContacts();
+                    groupContacts.RemoveAt(0);
+                    groupContacts.Sort();
+                    newList.Sort();
+                    Assert.AreEqual(groupContacts, newList);
+                    return;
+                }
+            }
         }
     }
 }

@@ -12,17 +12,46 @@ namespace WebAddressbookTests
         [Test]
         public void TestAddingContactToGroup()
         {
-            GroupData group = GroupData.GetAll()[0];
-            List<ContactData> oldList = group.GetContacts();
-            ContactData contact = ContactData.GetAll().Except(oldList).First();
+            app.Groups.CreateDefaultGroup();
+            app.Contacts.CreateDefaultContact();
 
-            app.Contacts.AddContactToGroup(contact, group);
+            List<GroupData> groups = GroupData.GetAll();
+            List<ContactData> contacts = ContactData.GetAll();
+            contacts.Sort();
 
-            List<ContactData> newList = group.GetContacts();
-            oldList.Add(contact);
-            newList.Sort();
-            oldList.Sort();
-            Assert.AreEqual(oldList, newList);
+            foreach (GroupData g in groups)
+            {
+                List<ContactData> groupContacts = g.GetContacts();
+                if (groupContacts.Count == 0)
+                {
+                    app.Contacts.AddContactToGroup(contacts[0], g);
+                    List<ContactData> newList = g.GetContacts();
+                    groupContacts.Add(contacts[0]);
+                    groupContacts.Sort();
+                    newList.Sort();
+                    Assert.AreEqual(groupContacts, newList);
+                    return;
+                }
+                groupContacts.Sort();
+                int i = 0;
+                foreach (ContactData contactToAdd in groupContacts)
+                {
+                    if (!contacts[i].Equals(contactToAdd))
+                    {
+                        app.Contacts.AddContactToGroup(contactToAdd, g);
+                        List<ContactData> newList = g.GetContacts();
+                        groupContacts.Add(contactToAdd);
+                        groupContacts.Sort();
+                        newList.Sort();
+                        Assert.AreEqual(groupContacts, newList);
+                        return;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+            }
         }
     }
 }
