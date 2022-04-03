@@ -17,6 +17,7 @@ namespace WebAddressbookTests
 
             List<GroupData> groups = GroupData.GetAll();
             List<ContactData> contacts = ContactData.GetAll();
+            bool flag = false;
             contacts.Sort();
 
             foreach (GroupData g in groups)
@@ -30,6 +31,7 @@ namespace WebAddressbookTests
                     groupContacts.Sort();
                     newList.Sort();
                     Assert.AreEqual(groupContacts, newList);
+                    flag = true;
                     return;
                 }
                 groupContacts.Sort();
@@ -44,6 +46,7 @@ namespace WebAddressbookTests
                         groupContacts.Sort();
                         newList.Sort();
                         Assert.AreEqual(groupContacts, newList);
+                        flag = true;
                         return;
                     }
                     else
@@ -51,6 +54,13 @@ namespace WebAddressbookTests
                         i++;
                     }
                 }
+            }
+
+            if (flag == false)
+            {
+                GroupData additionalGroup = new GroupData("additional");
+                app.Groups.Create(additionalGroup);
+                app.Contacts.AddContactToGroup(contacts[0], additionalGroup);
             }
         }
     }
