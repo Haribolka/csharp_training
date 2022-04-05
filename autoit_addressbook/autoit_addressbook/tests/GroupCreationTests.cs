@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace autoit_addressbook
 {
-    [TestClass]
+    [TestFixture]
     public class GroupCreationTests : TestBase
     {
-        [TestMethod]
+        [Test]
         public void TestGroupCreation()
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace autoit_addressbook
 {
