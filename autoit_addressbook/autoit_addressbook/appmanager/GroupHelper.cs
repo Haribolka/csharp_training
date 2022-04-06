@@ -9,6 +9,7 @@ namespace autoit_addressbook
     public class GroupHelper : HelperBase
     {
         public static string GROUPWINTITLE = "Group editor";
+        public static string DELETEGROUPWINTITLE = "Delete group";
 
         public GroupHelper(ApplicationManager manager) : base(manager)
         {
@@ -18,12 +19,12 @@ namespace autoit_addressbook
         {
             List<GroupData> list = new List<GroupData>();
             OpenGroupsDialogue();
-            string count = aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d5",
+            string count = aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51",
                 "GetItemCount", "#0", "");
             //Console.WriteLine("Count:" + count);
             for (int i = 0; i < int.Parse(count); i++)
             {
-                string item = aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d5",
+                string item = aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51",
                  "GetText", "#0|#" + i, "");
                 list.Add(new GroupData()
                 {
@@ -40,6 +41,19 @@ namespace autoit_addressbook
             aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d53");
             aux.Send(newGroup.Name);
             aux.Send("{ENTER}");
+            CloseGroupsDialogue();
+        }
+
+        public void Remove(GroupData removedGroup)
+        {
+            OpenGroupsDialogue();
+            Console.WriteLine("Group:" + removedGroup.Name);
+            aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51",
+                "Select", "Contact Groups|" + removedGroup.Name, "");
+            aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
+            aux.WinWait(DELETEGROUPWINTITLE);
+            aux.ControlClick(DELETEGROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d53");
+            aux.WinWait(GROUPWINTITLE);
             CloseGroupsDialogue();
         }
 
