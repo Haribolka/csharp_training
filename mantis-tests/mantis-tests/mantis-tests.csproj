@@ -73,7 +73,7 @@
     <Compile Include="tests\TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="config_defaults_inc.php">
+    <None Include="config_inc.php">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
