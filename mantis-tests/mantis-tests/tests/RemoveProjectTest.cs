@@ -6,10 +6,10 @@ using System.Text;
 namespace mantis_tests
 {
     [TestFixture]
-    public class AddProjectTest : TestBase
+    public class RemoveProjectTest : TestBase
     {
         [Test]
-        public void AddProject()
+        public void RemoveProject()
         {
             ProjectData project = new ProjectData()
             {
@@ -22,14 +22,22 @@ namespace mantis_tests
                 Password = "root"
             };
 
-            app.API.CreateNewProject(account, project);
-            /*app.Auth.Login(account);
+            List<ProjectData> projects = new List<ProjectData>();
+
+            projects = app.API.GetAllProjects(account);
+            if (projects.Count == 0)
+            {
+                app.API.CreateNewProject(account, project);
+                projects = app.API.GetAllProjects(account);
+            }
+
+            app.Auth.Login(account);
             app.Manage.OpenManagePage();
             app.PM.OpenManageProjectsTab();
-            app.PM.ClickCreateProject();
-            app.PM.SubmitProjectData(project);
-            Assert.IsTrue(app.PM.CheckProjectInTable(project));
-            app.Auth.Logout();*/
+            app.PM.OpenProject(projects[0].Name);
+            app.PM.DeleteProject();
+            Assert.IsFalse(app.PM.CheckProjectInTable(projects[0]));
+            app.Auth.Logout();
         }
     }
 }

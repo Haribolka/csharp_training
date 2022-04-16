@@ -32,6 +32,17 @@ namespace mantis_tests
             driver.FindElement(By.XPath("//input[@type='submit']")).Click();
         }
 
+        public void OpenProject(string name)
+        {
+            driver.FindElement(By.XPath("//td/a[text()='" + name + "']")).Click();
+        }
+
+        public void DeleteProject()
+        {
+            driver.FindElement(By.Id("project-delete-form")).Click();
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
+        }
+
         public bool CheckProjectInTable(ProjectData project)
         {
             return IsElementPresent(By.XPath("//a[text()='" + project.Name + "']"));
