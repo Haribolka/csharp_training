@@ -13,8 +13,8 @@ namespace mantis_tests
         {
             ProjectData project = new ProjectData()
             {
-                Name = "Project" + DateTime.UtcNow.ToString(),
-                Description = "Project Description " + DateTime.UtcNow.ToString()
+                Name = "Project" + DateTime.Now.ToString(),
+                Description = "Project Description " + DateTime.Now.ToString()
             };
             AccountData account = new AccountData()
             {

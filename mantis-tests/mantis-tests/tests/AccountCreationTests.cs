@@ -22,11 +22,12 @@ namespace mantis_tests
         [Test]
         public void TestAccountRegistration()
         {
+            string time = DateTime.Now.ToString("MMddyyHHmmss");
             AccountData account = new AccountData()
             {
-                Name = "testuser5",
+                Name = "testuser" + time,
                 Password = "password",
-                Email = "testuser5@localhost.localdomain"
+                Email = "testuser" + time + "@localhost.localdomain"
             };
 
             List<AccountData> accounts = app.Admin.GetAllAccounts();
